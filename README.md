@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Qualigenix CMS
 
-## Getting Started
+Qualigenix CMS is a Next.js + Prisma + PostgreSQL based Content Management System that powers the dynamic content (like FAQs and metadata) for the Qualigenix website. It includes a secure admin dashboard to manage entries and automatically syncs changes to the live frontend.
 
-First, run the development server:
+Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Admin CMS Dashboard
+Secure login (ADMIN_USER / ADMIN_PASS) for managing FAQs and other dynamic content.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Dynamic FAQs Section
+Add, edit, delete, and publish FAQ items directly from the CMS dashboard.
+Published items instantly appear on the main Qualigenix website.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+PostgreSQL Database (NeonDB)
+Cloud-hosted database with Prisma ORM for schema management and queries.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Authentication
+Basic environment-based authentication to keep CMS access private.
 
-## Learn More
+SEO Optimized
+Auto-generates meta titles, descriptions, and sitemap for indexed content.
 
-To learn more about Next.js, take a look at the following resources:
+Full-Stack Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Frontend: Next.js 16 + Tailwind CSS
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Backend: Next.js API Routes + Prisma ORM
 
-## Deploy on Vercel
+Database: PostgreSQL (Neon)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Hosting: Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tech Stack
+Layer	Technology
+Frontend	Next.js 16, React 19, TailwindCSS 4
+Backend	Next.js API Routes, Prisma ORM
+Database	PostgreSQL (Neon Cloud)
+Auth	Environment-based (admin credentials)
+Hosting	Vercel
+Deployment	GitHub CI → Vercel auto-deploy
+
+Setup Instructions
+1. Clone the Repository
+git clone https://github.com/PSilyDev/Qualigenix.git
+cd Qualigenix
+
+2. Install Dependencies
+pnpm install
+
+3. Create a .env File
+DATABASE_URL="your-postgresql-pooler-url"
+DIRECT_URL="your-postgresql-direct-url"
+ADMIN_USER="admin"
+ADMIN_PASS="secret123"
+SITE_URL="https://qualigenix.vercel.app"
+
+4. Prisma Setup
+pnpm dlx prisma generate
+pnpm dlx prisma migrate deploy
+
+
+(Optional, if you want to seed sample FAQs)
+
+pnpm run seed
+
+5. Run Locally
+pnpm run dev
+
+
+Visit http://localhost:3000/admin
+ to access the CMS dashboard.
+
+🌐 Deployment
+
+The project is hosted on Vercel and automatically builds from the main branch.
+Environment variables are configured under:
+
+DATABASE_URL
+
+DIRECT_URL
+
+ADMIN_USER
+
+ADMIN_PASS
+
+SITE_URL
+
+Production site: https://qualigenix-cms.vercel.app
+
+📁 Repository Structure
+qualigenix/
+│
+├── prisma/
+│   ├── schema.prisma         
+│   └── seed.mjs              
+│
+├── app/
+│   ├── admin/                
+│   ├── api/faq/              
+│   ├── sitemap.js            
+│   └── page.js               
+│
+├── components/               
+├── styles/                   
+├── package.json
+└── README.md
+
+🧾 Admin Access
+Username	Password
+admin	secret123
